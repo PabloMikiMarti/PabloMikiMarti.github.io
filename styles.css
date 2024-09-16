@@ -1,0 +1,54 @@
+/* styles.css */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#graph-container {
+    width: 80%;
+    height: 80vh;
+    border: 2px solid #444;
+    border-radius: 10px;
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+#tooltip {
+    position: absolute;
+    text-align: left;
+    width: 200px;
+    padding: 10px;
+    font: 12px sans-serif;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #fff;
+    border-radius: 8px;
+    pointer-events: none;
+    color: #fff;
+}
