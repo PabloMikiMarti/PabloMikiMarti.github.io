@@ -1,0 +1,596 @@
+/* =========================================
+   Imports
+========================================= */
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&family=Chivo+Mono:wght@300;400;700&display=swap");
+
+/* =========================================
+   :root Variables
+========================================= */
+:root {
+  --font-primary: "Chivo Mono", monospace;
+  --font-secondary: "Urbanist", sans-serif;
+  --color-background: #e1dfdd;
+  --color-text: #141414;
+  --color-accent: #9b271d;
+  --color-secondary-text: #333;
+  --color-muted: #666;
+  --color-footer-bg: #000;
+  --color-footer-text: #fff;
+  --transition-duration: 0.3s;
+  --grid-color: rgba(169, 167, 165, 0.8); /* Adjust opacity as needed */
+  --grid-size: 20px;
+  --header-height: 80px; /* Define header height */
+  --header-width: 85%; /* Define header width */
+
+  --header-bg-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  --header-blur: 2px; /* Blur radius */
+  --header-border-radius: 5px; /* Optional: Rounded corners for glass effect */
+
+  /* Flower Variables */
+  --flower-size: 20px; /* Adjust this value to change the flower size */
+  --flower-offset-x: 5px; /* Horizontal offset to position above and to the right */
+  --flower-offset-y: -7px; /* Vertical offset to position above and to the right */
+}
+
+/* =========================================
+   Global Styles
+========================================= */
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 16px;
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal scroll due to fixed elements */
+}
+
+/* Remove existing grid overlay to implement separate pseudo-elements */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Ensure it's below main content */
+  pointer-events: none; /* Allow clicks through the grid */
+  background-color: transparent; /* Ensure no background color is applied */
+}
+
+/* =========================================
+   Header & Navigation
+========================================= */
+h1,
+h2 {
+  font-family: var(--font-secondary);
+  font-weight: 550;
+  margin: 0;
+  line-height: 1;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 12rem);
+  color: #181818;
+  text-align: right;
+  width: 100%;
+  align-self: flex-end;
+}
+
+h2 {
+  font-size: clamp(2.5rem, 12vw, 12rem);
+  color: #530202;
+  align-self: flex-start;
+}
+
+a {
+  color: var(--color-secondary-text);
+  text-decoration: none;
+}
+
+/* Layout Containers */
+.main-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px 40px 40px; /* Added top padding to account for fixed header */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInContent 1s forwards;
+  animation-delay: 2s; /* Start after grid animations */
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 10px;
+  font-size: 0.9rem;
+  z-index: 3; /* Ensures footer is above other elements */
+}
+
+/* Header Styles */
+header {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--header-width); /* Use the --header-width variable */
+  height: var(--header-height);
+  background-color: var(--header-bg-color);
+  backdrop-filter: blur(var(--header-blur));
+  -webkit-backdrop-filter: blur(var(--header-blur)); /* For Safari */
+  border-radius: var(--header-border-radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+  z-index: 4;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-duration),
+    backdrop-filter var(--transition-duration);
+}
+
+/* Optional: Adjust header for smaller screens */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto; /* Allow height to adjust based on content */
+    padding: 10px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav li + li {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .header-item {
+    margin-bottom: 10px;
+  }
+
+  .main-content {
+    padding: 140px 20px 20px 20px; /* Increased top padding for mobile */
+  }
+}
+
+/* Common Header Element Styles */
+.header-element,
+.header-item,
+nav a {
+  color: var(--color-secondary-text);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.header-element {
+  font-size: 1.3rem;
+}
+
+.header-item,
+nav a {
+  font-size: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav li + li {
+  margin-left: 20px;
+}
+
+/* =========================================
+   Main Content
+========================================= */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* height: calc(100vh - var(--header-height) - 40px); */ /* Removed fixed height */
+}
+
+.name-container {
+  filter: url(#wave);
+  position: relative;
+  width: 100%;
+}
+
+.description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  max-width: 60%;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.07);
+  padding: 10px;
+  color: var(--color-secondary-text);
+}
+
+/* =========================================
+   Sections
+========================================= */
+section {
+  margin: 100px 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+section h2 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--color-text);
+}
+
+.section-number {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   Projects
+========================================= */
+.project-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.project {
+  width: 48%;
+  margin-bottom: 40px;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--color-text);
+}
+
+.project-meta {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+
+.project-description {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: var(--color-secondary-text);
+}
+
+.project-links {
+  list-style: none;
+  padding: 0;
+}
+
+.project-links li {
+  margin-bottom: 5px;
+}
+
+.project-links li::before {
+  content: "□";
+  margin-right: 5px;
+}
+
+/* =========================================
+   Flower Animation
+========================================= */
+.flower-container {
+  position: fixed; /* Changed from absolute to fixed */
+  width: var(--flower-size);
+  height: var(--flower-size);
+  pointer-events: none;
+  transform: translate(
+      calc(var(--flower-offset-x)),
+      calc(var(--flower-offset-y))
+    )
+    rotate(45deg);
+  opacity: 1;
+  transition: opacity 7s ease, transform 0.2s ease;
+  z-index: 2; /* Ensures flower is above grid but below main content */
+}
+
+.flower {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.flower .circle,
+.flower .center-circle {
+  position: absolute;
+  width: calc(var(--flower-size) / 3.5); /* Adjusted relative to flower size */
+  height: calc(var(--flower-size) / 3.5);
+  border: calc(var(--flower-size) / 8) solid var(--color-accent); /* Adjusted border thickness */
+  border-radius: 50%;
+  background: var(--color-background);
+}
+
+.flower .circle:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flower .circle:nth-child(2) {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.flower .circle:nth-child(3) {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.flower .circle:nth-child(4) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flower .center-circle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* =========================================
+   Copy Button & Tooltip
+======================================== */
+.copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.copy-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #555;
+  transition: fill var(--transition-duration);
+}
+
+.copy-button:hover svg {
+  fill: #000;
+}
+
+.copy-button:focus {
+  outline: none;
+}
+
+.copy-tooltip {
+  visibility: hidden;
+  width: 80px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity var(--transition-duration);
+}
+
+.copy-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.copy-tooltip.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* =========================================
+   Responsive Styles
+========================================= */
+@media (max-width: 950px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    height: auto; /* Allow height to adjust based on content */
+    padding: 10px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav li + li {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .project {
+    width: 100%;
+  }
+
+  .description {
+    max-width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+    align-self: center;
+  }
+
+  .main-content {
+    padding: 140px 20px 20px 20px; /* Increased top padding for mobile */
+  }
+
+  main {
+    padding-top: 0; /* Already accounted for in main-content */
+  }
+}
+
+/* =========================================
+   Grid Overlay Animation
+========================================= */
+
+/* =========================================
+   Vertical Grid Lines
+========================================= */
+body::before {
+  /* Initial State */
+  width: 100%;
+  height: 0; /* Start with height 0 */
+  top: 0;
+  left: 0;
+
+  /* Grid Lines Only */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--grid-color),
+    var(--grid-color) 1px,
+    transparent 1px,
+    transparent var(--grid-size)
+  );
+
+  /* Background Settings */
+  background-size: var(--grid-size) 100%;
+  background-repeat: repeat;
+  background-position: left top;
+
+  /* Ensure the grid lines are above the background but below the content */
+  z-index: 1;
+
+  /* Animation */
+  animation: drawVertical 2s forwards;
+}
+
+/* =========================================
+   Horizontal Grid Lines
+========================================= */
+body::after {
+  /* Initial State */
+  width: 0; /* Start with width 0 */
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  /* Grid Lines Only */
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--grid-color),
+    var(--grid-color) 1px,
+    transparent 1px,
+    transparent var(--grid-size)
+  );
+
+  /* Background Settings */
+  background-size: var(--grid-size) 100%;
+  background-repeat: repeat;
+  background-position: left top;
+
+  /* Ensure the grid lines are above the background but below the content */
+  z-index: 1;
+
+  /* Animation */
+  animation: drawHorizontal 2s forwards;
+  animation-delay: 2s; /* Start after vertical lines are drawn */
+}
+
+/* Keyframes to animate vertical lines from top to bottom */
+@keyframes drawVertical {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+/* Keyframes to animate horizontal lines from left to right */
+@keyframes drawHorizontal {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* =========================================
+     Main Content Animation
+========================================= */
+/* Keyframes for fading in the main content */
+@keyframes fadeInContent {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Animate individual elements within main-content for a staggered effect */
+.main-content .header-element,
+.main-content h1,
+.main-content h2,
+.main-content .description,
+.main-content section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Assign animation delays to individual elements for staggered entrance */
+.main-content .header-element {
+  animation-delay: 2s; /* After grid animations (2s vertical + 2s horizontal) */
+}
+
+.main-content h1 {
+  animation-delay: 2.5s;
+}
+
+.main-content h2 {
+  animation-delay: 2.7s;
+}
+
+.main-content .description {
+  animation-delay: 2.9s;
+}
+
+.main-content section {
+  animation-delay: 3.1s;
+}

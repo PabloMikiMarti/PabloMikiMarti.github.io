@@ -1,30 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Mockup</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- D3.js CDN -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pablo-Miki Martí Castellote</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Fixed Header -->
     <header>
-        <h1>My Portfolio</h1>
+      <div class="header-item header-element">2024:v3</div>
+      <div class="header-item header-element">Based in Boston, MA</div>
+      <nav>
+        <ul>
+          <li><a href="#work" class="header-element">Work</a></li>
+          <li><a href="#about" class="header-element">About</a></li>
+          <li><a href="#blog" class="header-element">Blog</a></li>
+          <li><a href="#social-media" class="header-element">Contact</a></li>
+        </ul>
+      </nav>
     </header>
-    <main>
-        <div id="graph-container"></div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
-    </footer>
 
-    <!-- Tooltip -->
-    <div id="tooltip" class="hidden">
-        <p><strong id="tooltip-title"></strong></p>
-        <p id="tooltip-description"></p>
+    <div class="flower-container">
+      <div class="flower">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="center-circle"></div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <div class="main-content">
+      <main>
+        <div class="name-container">
+          <h1>Pablo-Miki</h1>
+          <h2>Martí Castellote</h2>
+        </div>
+        <p class="description">
+          I'm a Biomedical Engineer from Barcelona, currently working as a
+          Postdoctoral Researcher at Harvard Medical School. I'm really
+          passionate about applying machine learning in the healthcare setting,
+          and clinical trials in particular. My other interests span philosophy
+          of science and ontology (<a
+            href="https://en.wikipedia.org/wiki/Wilfrid_Sellars"
+            target="_blank"
+            >Sellars</a
+          >
+          and
+          <a
+            href="https://en.wikipedia.org/wiki/Gustavo_Bueno#Philosophical_materialism"
+            target="_blank"
+            >Bueno</a
+          >), creative coding and GenAI, and music production.
+        </p>
+      </main>
+
+      <section id="work">
+        <div class="section-number">// 01</div>
+        <h2>Research Projects</h2>
+        <div class="project-container">
+          <div class="project">
+            <h3 class="project-title">Machine Learning for Clinical Trials</h3>
+            <div class="project-meta">[Ongoing Project]</div>
+            <p class="project-description">
+              Leveraging machine learning techniques to optimize clinical trial
+              designs, improve efficiency, and extract meaningful insights from
+              large-scale clinical data.
+            </p>
+            <ul class="project-links">
+              <li><a href="#project-link">Project Details</a></li>
+              <li><a href="#publication-link">Publications</a></li>
+            </ul>
+          </div>
+          <div class="project">
+            <h3 class="project-title">Echocardiography Data Analysis</h3>
+            <div class="project-meta">[Collaborative Project]</div>
+            <p class="project-description">
+              Developing advanced machine learning models to analyze
+              echocardiography data, aiming to enhance diagnostic decision
+              support for cardiologists.
+            </p>
+            <ul class="project-links">
+              <li><a href="#project-link">Project Details</a></li>
+              <li><a href="#publication-link">Publications</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-number">// 02</div>
+        <h2>About</h2>
+        <p>
+          I am currently a Postdoctoral Researcher at Brigham and Women's
+          Hospital and Harvard Medical School, with an affiliation to the Broad
+          Institute of MIT and Harvard. My research focuses on the intersection
+          of machine learning and healthcare, specifically in improving clinical
+          trial efficiency and providing decision support tools for
+          cardiologists.
+        </p>
+        <p>
+          I completed my PhD at Universitat Pompeu Fabra in Barcelona, where I
+          developed novel machine learning methodologies for managing
+          heterogeneous clinical data. My work has been supported by the
+          Fundacio Privada Daniel Bravo Andreu, and I have collaborated with
+          leading experts in cardiology and machine learning.
+        </p>
+        <p>
+          Passionate about data-driven personalized medicine, I aim to
+          contribute to advancements in cardiac care through innovative research
+          and interdisciplinary collaboration.
+        </p>
+      </section>
+
+      <section id="blog">
+        <div class="section-number">// 03</div>
+        <h2>Blog</h2>
+        <p>
+          Welcome to my blog! Here, I share insights and updates on my research,
+          developments in machine learning for healthcare, and reflections on
+          the latest trends in data science and medical technology.
+        </p>
+        <!-- You can add blog posts here -->
+      </section>
+
+      <section id="social-media">
+        <div class="section-number">// 04</div>
+        <h2>Contact</h2>
+        <p>
+          Feel free to reach out via email or connect with me on professional
+          platforms:
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/pablo-miki-martí-castellote-b68484162"
+              target="_blank"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a href="https://x.com/PabloMikiMarti" target="_blank"
+              >X (Twitter)</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/PabloMikiMarti" target="_blank"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+        <p>
+          Email:
+          <a href="mailto:pmarticastellote@gmail.com" id="email-link"
+            >pmarticastellote@gmail.com</a
+          >
+          <button
+            class="copy-button"
+            onclick="copyEmail()"
+            aria-label="Copy Email"
+          >
+            <!-- Inline SVG for Copy Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"
+              />
+            </svg>
+            <!-- Tooltip -->
+            <span class="copy-tooltip" id="copy-tooltip">Copied!</span>
+          </button>
+        </p>
+      </section>
+    </div>
+
+    <div class="footer">© 2024 Pablo-Miki Martí Castellote</div>
+
+    <!-- Existing SVG and Scripts -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
+      <filter
+        id="wave"
+        x="-50%"
+        y="-50%"
+        width="1200%"
+        height="1500000%"
+        filterUnits="objectBoundingBox"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.005 0.01"
+          numOctaves="2"
+          result="warp"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="warp"
+          scale="0"
+          id="displacement"
+        />
+      </filter>
+    </svg>
+
+    <!-- Link to external JavaScript file -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
