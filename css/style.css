@@ -61,12 +61,65 @@ body::after {
 /* =========================================
    Header & Navigation
 ========================================= */
+h1,
+h2 {
+  font-family: var(--font-secondary);
+  font-weight: 550;
+  margin: 0;
+  line-height: 1;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 12rem);
+  color: #181818;
+  text-align: right;
+  width: 100%;
+  align-self: flex-end;
+}
+
+h2 {
+  font-size: clamp(2.5rem, 12vw, 12rem);
+  color: #530202;
+  align-self: flex-start;
+}
+
+a {
+  color: var(--color-secondary-text);
+  text-decoration: none;
+}
+
+/* Layout Containers */
+.main-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px 40px 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInContent 1s forwards;
+  animation-delay: 2s;
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 10px;
+  font-size: 0.9rem;
+  z-index: 3;
+}
+
+/* Header Styles */
 header {
   position: fixed;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: var(--header-width);
+  height: var(--header-height);
   background-color: var(--header-bg-color);
   backdrop-filter: blur(var(--header-blur));
   -webkit-backdrop-filter: blur(var(--header-blur));
@@ -82,54 +135,79 @@ header {
     backdrop-filter var(--transition-duration);
 }
 
-/* Header Left Container */
-.header-left {
-  display: flex;
-  align-items: center;
-}
-
-.header-left .header-item {
-  margin-right: 20px;
-}
-
-/* Header Navigation */
-.header-nav ul {
-  list-style: none;
+/* Hamburger Menu Button */
+.hamburger {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
   padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-.header-nav li + li {
   margin-left: 20px;
 }
 
-/* Hide Navigation on Mobile Devices */
-@media (max-width: 600px) {
+.hamburger-bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-secondary-text);
+  transition: transform var(--transition-duration),
+    opacity var(--transition-duration);
+}
+
+/* Show hamburger on smaller screens */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+
+  /* Hide the navigation menu by default on small screens */
   .header-nav {
     display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--header-bg-color);
+    backdrop-filter: blur(var(--header-blur));
+    -webkit-backdrop-filter: blur(var(--header-blur));
+    border-radius: 0 0 5px 5px;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: max-height var(--transition-duration) ease-in-out;
+    overflow: hidden;
+    max-height: 0;
   }
 
-  header {
-    flex-direction: column;
-    height: auto;
-    padding: 10px 5%;
-  }
-
-  .header-item {
-    margin-bottom: 10px;
-    text-align: center;
+  /* Show navigation when active */
+  .header-nav.active {
+    display: block;
+    max-height: 500px; /* Arbitrary large value to allow menu to expand */
   }
 
   nav ul {
     flex-direction: column;
     align-items: center;
-    width: 100%;
   }
 
   nav li + li {
     margin-left: 0;
-    margin-top: 10px;
+    margin-top: 15px;
+  }
+
+  /* Optional: Animate hamburger to 'X' when active */
+  .hamburger.active .hamburger-bar:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .hamburger.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
   }
 }
 
@@ -151,21 +229,20 @@ nav a {
   font-size: 1rem;
 }
 
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav li + li {
+  margin-left: 20px;
+}
+
 /* =========================================
    Main Content
 ========================================= */
-.main-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 40px 40px 40px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInContent 1s forwards;
-  animation-delay: 2s;
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -333,7 +410,7 @@ section h2 {
 
 /* =========================================
    Copy Button & Tooltip
-========================================= */
+======================================== */
 .copy-button {
   background: none;
   border: none;
@@ -393,56 +470,25 @@ section h2 {
 }
 
 /* =========================================
-   Footer
-========================================= */
-.footer {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--color-footer-bg);
-  color: var(--color-footer-text);
-  padding: 10px;
-  font-size: 0.9rem;
-  z-index: 3;
-}
-
-/* =========================================
    Responsive Styles
-========================================= */
-
-/* Adjustments for Shrunk Desktop Windows */
-@media (max-width: 900px) and (min-width: 601px) {
-  .main-content {
-    padding: 100px 20px 40px 20px;
+======================================== */
+@media (max-width: 950px) {
+  .project {
+    width: 100%;
   }
 
   .description {
     max-width: 100%;
-    font-size: 1rem;
-  }
-
-  h1 {
-    font-size: clamp(2.5rem, 8vw, 10rem);
-    text-align: right;
-  }
-
-  h2 {
-    font-size: clamp(2rem, 10vw, 8rem);
-    color: #530202;
-    align-self: flex-start;
   }
 }
 
-/* Hide Navigation on Mobile Devices */
+@media (max-width: 900px) {
+  .header-nav {
+    transition: max-height var(--transition-duration) ease-in-out;
+  }
+}
+
 @media (max-width: 600px) {
-  .main-content {
-    padding: 120px 20px 20px 20px;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
   h1 {
     text-align: center;
     align-self: center;
@@ -481,7 +527,7 @@ section h2 {
 
 /* =========================================
    Grid Overlay Animation
-========================================= */
+======================================== */
 
 /* Vertical Grid Lines */
 body::before {
@@ -553,8 +599,7 @@ body::after {
 
 /* =========================================
      Main Content Animation
-========================================= */
-/* Keyframes for fading in the main content */
+======================================== */
 @keyframes fadeInContent {
   to {
     opacity: 1;
