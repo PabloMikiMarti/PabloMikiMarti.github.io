@@ -61,65 +61,12 @@ body::after {
 /* =========================================
    Header & Navigation
 ========================================= */
-h1,
-h2 {
-  font-family: var(--font-secondary);
-  font-weight: 550;
-  margin: 0;
-  line-height: 1;
-}
-
-h1 {
-  font-size: clamp(3rem, 10vw, 12rem);
-  color: #181818;
-  text-align: right;
-  width: 100%;
-  align-self: flex-end;
-}
-
-h2 {
-  font-size: clamp(2.5rem, 12vw, 12rem);
-  color: #530202;
-  align-self: flex-start;
-}
-
-a {
-  color: var(--color-secondary-text);
-  text-decoration: none;
-}
-
-/* Layout Containers */
-.main-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 40px 40px 40px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInContent 1s forwards;
-  animation-delay: 2s;
-}
-
-.footer {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--color-footer-bg);
-  color: var(--color-footer-text);
-  padding: 10px;
-  font-size: 0.9rem;
-  z-index: 3;
-}
-
-/* Header Styles */
 header {
   position: fixed;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: var(--header-width);
-  height: var(--header-height);
   background-color: var(--header-bg-color);
   backdrop-filter: blur(var(--header-blur));
   -webkit-backdrop-filter: blur(var(--header-blur));
@@ -136,57 +83,62 @@ header {
   overflow-x: auto;
 }
 
-/* Responsive Header */
-@media (max-width: 900px) {
+/* Header Left Container */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left .header-item {
+  margin-right: 20px;
+}
+
+/* Header Navigation */
+.header-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.header-nav li + li {
+  margin-left: 20px;
+}
+
+/* Hide Navigation on Mobile Devices */
+@media (max-width: 600px) {
+  .header-nav {
+    display: none;
+  }
+
   header {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 10px 5%;
-  }
-
-  .header-item {
-    flex: 1 1 100%;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-
-  nav ul {
-    flex: 1 1 100%;
-    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    padding: 10px 2%;
   }
 
-  nav li {
-    margin: 5px 10px;
-  }
-
-  .header-element {
-    font-size: 1rem;
+  .header-left {
+    display: none; /* Hide additional header items on mobile */
   }
 }
 
-@media (max-width: 600px) {
+/* Responsive Header for Shrunk Desktop Windows */
+@media (max-width: 900px) and (min-width: 601px) {
   header {
-    flex-direction: column;
-    align-items: center;
+    width: 90%;
+    padding: 0 1.5%;
   }
 
-  .header-item {
-    margin-bottom: 5px;
+  .header-left .header-item {
+    margin-right: 15px;
+    font-size: 0.95rem;
   }
 
-  nav ul {
-    flex-direction: column;
-    align-items: center;
+  .header-nav li + li {
+    margin-left: 15px;
   }
 
-  nav li {
-    margin: 5px 0;
-  }
-
-  .header-element {
-    font-size: 0.9rem;
+  .header-nav a {
+    font-size: 0.95rem;
   }
 }
 
@@ -208,20 +160,21 @@ nav a {
   font-size: 1rem;
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-nav li + li {
-  margin-left: 20px;
-}
-
 /* =========================================
    Main Content
 ========================================= */
+.main-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px 40px 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInContent 1s forwards;
+  animation-delay: 2s;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -389,7 +342,7 @@ section h2 {
 
 /* =========================================
    Copy Button & Tooltip
-======================================== */
+========================================= */
 .copy-button {
   background: none;
   border: none;
@@ -449,19 +402,56 @@ section h2 {
 }
 
 /* =========================================
+   Footer
+========================================= */
+.footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 10px;
+  font-size: 0.9rem;
+  z-index: 3;
+}
+
+/* =========================================
    Responsive Styles
 ========================================= */
-@media (max-width: 950px) {
-  .project {
-    width: 100%;
+
+/* Adjustments for Shrunk Desktop Windows */
+@media (max-width: 900px) and (min-width: 601px) {
+  .main-content {
+    padding: 100px 20px 40px 20px;
   }
 
   .description {
     max-width: 100%;
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 10rem);
+    text-align: right;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 10vw, 8rem);
+    color: #530202;
+    align-self: flex-start;
   }
 }
 
+/* Hide Navigation on Mobile Devices */
 @media (max-width: 600px) {
+  .main-content {
+    padding: 120px 20px 20px 20px;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
   h1 {
     text-align: center;
     align-self: center;
@@ -471,14 +461,6 @@ section h2 {
   h2 {
     text-align: center;
     font-size: 2rem;
-  }
-
-  .main-content {
-    padding: 120px 20px 20px 20px;
-  }
-
-  .description {
-    font-size: 1rem;
   }
 
   .footer {
@@ -563,6 +545,7 @@ body::after {
 /* =========================================
      Main Content Animation
 ========================================= */
+/* Keyframes for fading in the main content */
 @keyframes fadeInContent {
   to {
     opacity: 1;
