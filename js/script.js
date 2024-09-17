@@ -4,68 +4,70 @@ const nameContainer = document.querySelector(".name-container");
 
 // Variables for mouse tracking
 let mouseX = 0,
-  mouseY = 0; // Cursor's actual position
+  mouseY = 0;
 let flowerX = 0,
-  flowerY = 0; // Flower's position
-const delayFactor = 0.05; // Controls how slowly the flower moves (lower = more delay)
+  flowerY = 0;
+const delayFactor = 0.05;
 
-// Function to get CSS variable values
-function getCSSVariable(variableName) {
-  const rootStyles = getComputedStyle(document.documentElement);
-  return parseFloat(rootStyles.getPropertyValue(variableName)) || 0;
-}
+// Detect if the device is touch-enabled
+const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-// Initialize offset variables from CSS
-let offsetX = getCSSVariable("--flower-offset-x");
-let offsetY = getCSSVariable("--flower-offset-y");
+// Disable flower animation on touch devices
+if (!isTouchDevice) {
+  // Function to get CSS variable values
+  function getCSSVariable(variableName) {
+    const rootStyles = getComputedStyle(document.documentElement);
+    return parseFloat(rootStyles.getPropertyValue(variableName)) || 0;
+  }
 
-// Function to update offsets dynamically if CSS variables change
-function observeCSSVariableChanges() {
-  const root = document.documentElement;
-  const observer = new MutationObserver(() => {
-    offsetX = getCSSVariable("--flower-offset-x");
-    offsetY = getCSSVariable("--flower-offset-y");
-  });
-  observer.observe(root, {
-    attributes: true,
-    childList: false,
-    subtree: false,
-  });
-}
-observeCSSVariableChanges();
+  // Initialize offset variables from CSS
+  let offsetX = getCSSVariable("--flower-offset-x");
+  let offsetY = getCSSVariable("--flower-offset-y");
 
-// Function to update the flower's position smoothly
-function updateFlowerPosition() {
-  const targetX = mouseX + offsetX;
-  const targetY = mouseY + offsetY;
+  // Function to update offsets dynamically if CSS variables change
+  function observeCSSVariableChanges() {
+    const root = document.documentElement;
+    const observer = new MutationObserver(() => {
+      offsetX = getCSSVariable("--flower-offset-x");
+      offsetY = getCSSVariable("--flower-offset-y");
+    });
+    observer.observe(root, {
+      attributes: true,
+      childList: false,
+      subtree: false,
+    });
+  }
+  observeCSSVariableChanges();
 
-  // Calculate the distance between the flower's current position and the target position
-  const dx = targetX - flowerX;
-  const dy = targetY - flowerY;
+  // Function to update the flower's position smoothly
+  function updateFlowerPosition() {
+    const targetX = mouseX + offsetX;
+    const targetY = mouseY + offsetY;
 
-  // Slowly move the flower towards the target position
-  flowerX += dx * delayFactor;
-  flowerY += dy * delayFactor;
+    const dx = targetX - flowerX;
+    const dy = targetY - flowerY;
 
-  // Update flower position
-  flower.style.left = `${flowerX}px`;
-  flower.style.top = `${flowerY}px`;
+    flowerX += dx * delayFactor;
+    flowerY += dy * delayFactor;
 
-  // Continue the animation loop
+    flower.style.left = `${flowerX}px`;
+    flower.style.top = `${flowerY}px`;
+
+    requestAnimationFrame(updateFlowerPosition);
+  }
+
+  // Function to track the mouse position
+  function handleMouseMove(event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  }
+
+  // Attach mousemove event listener
+  document.addEventListener("mousemove", handleMouseMove);
+
+  // Start the animation loop for flower movement
   requestAnimationFrame(updateFlowerPosition);
 }
-
-// Function to track the mouse position
-function handleMouseMove(event) {
-  mouseX = event.clientX;
-  mouseY = event.clientY;
-}
-
-// Attach mousemove event listener
-document.addEventListener("mousemove", handleMouseMove);
-
-// Start the animation loop for flower movement
-requestAnimationFrame(updateFlowerPosition);
 
 // Scroll-based animations and effects
 window.addEventListener("scroll", () => {
@@ -74,15 +76,15 @@ window.addEventListener("scroll", () => {
   // Update SVG filter displacement scale based on scroll
   const displacementMap = document.querySelector("#displacement");
   if (displacementMap) {
-    const maxScale = 12000; // Adjust for a more pronounced effect
+    const maxScale = 12000;
     const newScale = Math.min(scrollPosition / 0.7, maxScale);
     displacementMap.setAttribute("scale", newScale);
   }
 
   // Update name container opacity based on scroll
   if (nameContainer) {
-    const maxScroll = 1000; // Scroll amount to fully fade out the name container
-    const newOpacity = Math.max(1 - scrollPosition / maxScroll, 0); // Ensures opacity doesn't go below 0
+    const maxScroll = 1000;
+    const newOpacity = Math.max(1 - scrollPosition / maxScroll, 0);
     nameContainer.style.opacity = newOpacity;
   }
 });

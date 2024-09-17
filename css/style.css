@@ -17,19 +17,19 @@
   --color-footer-bg: #000;
   --color-footer-text: #fff;
   --transition-duration: 0.3s;
-  --grid-color: rgba(169, 167, 165, 0.8); /* Adjust opacity as needed */
+  --grid-color: rgba(169, 167, 165, 0.8);
   --grid-size: 20px;
-  --header-height: 80px; /* Define header height */
-  --header-width: 85%; /* Define header width */
+  --header-height: 80px;
+  --header-width: 85%;
 
-  --header-bg-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
-  --header-blur: 2px; /* Blur radius */
-  --header-border-radius: 5px; /* Optional: Rounded corners for glass effect */
+  --header-bg-color: rgba(255, 255, 255, 0.3);
+  --header-blur: 2px;
+  --header-border-radius: 5px;
 
   /* Flower Variables */
-  --flower-size: 20px; /* Adjust this value to change the flower size */
-  --flower-offset-x: 5px; /* Horizontal offset to position above and to the right */
-  --flower-offset-y: -7px; /* Vertical offset to position above and to the right */
+  --flower-size: 20px;
+  --flower-offset-x: 5px;
+  --flower-offset-y: -7px;
 }
 
 /* =========================================
@@ -44,19 +44,18 @@ body {
   min-height: 100vh;
   font-size: 16px;
   position: relative;
-  overflow-x: hidden; /* Prevent horizontal scroll due to fixed elements */
+  overflow-x: hidden;
 }
 
-/* Remove existing grid overlay to implement separate pseudo-elements */
 body::before,
 body::after {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1; /* Ensure it's below main content */
-  pointer-events: none; /* Allow clicks through the grid */
-  background-color: transparent; /* Ensure no background color is applied */
+  z-index: 1;
+  pointer-events: none;
+  background-color: transparent;
 }
 
 /* =========================================
@@ -95,11 +94,11 @@ a {
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 100px 40px 40px 40px; /* Added top padding to account for fixed header */
+  padding: 100px 40px 40px 40px;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInContent 1s forwards;
-  animation-delay: 2s; /* Start after grid animations */
+  animation-delay: 2s;
 }
 
 .footer {
@@ -110,7 +109,7 @@ a {
   color: var(--color-footer-text);
   padding: 10px;
   font-size: 0.9rem;
-  z-index: 3; /* Ensures footer is above other elements */
+  z-index: 3;
 }
 
 /* Header Styles */
@@ -119,16 +118,16 @@ header {
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: var(--header-width); /* Use the --header-width variable */
+  width: var(--header-width);
   height: var(--header-height);
   background-color: var(--header-bg-color);
   backdrop-filter: blur(var(--header-blur));
-  -webkit-backdrop-filter: blur(var(--header-blur)); /* For Safari */
+  -webkit-backdrop-filter: blur(var(--header-blur));
   border-radius: var(--header-border-radius);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 2%;
   box-sizing: border-box;
   z-index: 4;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -136,30 +135,28 @@ header {
     backdrop-filter var(--transition-duration);
 }
 
-/* Optional: Adjust header for smaller screens */
-@media (max-width: 768px) {
+/* Responsive Header */
+@media (max-width: 900px) {
   header {
     flex-direction: column;
-    height: auto; /* Allow height to adjust based on content */
-    padding: 10px 20px;
+    height: auto;
+    padding: 10px 5%;
+  }
+
+  .header-item {
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   nav ul {
     flex-direction: column;
+    align-items: center;
     width: 100%;
   }
 
   nav li + li {
     margin-left: 0;
     margin-top: 10px;
-  }
-
-  .header-item {
-    margin-bottom: 10px;
-  }
-
-  .main-content {
-    padding: 140px 20px 20px 20px; /* Increased top padding for mobile */
   }
 }
 
@@ -173,7 +170,7 @@ nav a {
 }
 
 .header-element {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .header-item,
@@ -200,7 +197,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* height: calc(100vh - var(--header-height) - 40px); */ /* Removed fixed height */
 }
 
 .name-container {
@@ -210,7 +206,7 @@ main {
 }
 
 .description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 400;
   max-width: 60%;
   margin-top: 20px;
@@ -223,7 +219,7 @@ main {
    Sections
 ========================================= */
 section {
-  margin: 100px 0;
+  margin: 80px 0;
   padding: 0;
   border-bottom: none;
 }
@@ -293,7 +289,7 @@ section h2 {
    Flower Animation
 ========================================= */
 .flower-container {
-  position: fixed; /* Changed from absolute to fixed */
+  position: fixed;
   width: var(--flower-size);
   height: var(--flower-size);
   pointer-events: none;
@@ -304,7 +300,7 @@ section h2 {
     rotate(45deg);
   opacity: 1;
   transition: opacity 7s ease, transform 0.2s ease;
-  z-index: 2; /* Ensures flower is above grid but below main content */
+  z-index: 2;
 }
 
 .flower {
@@ -316,9 +312,9 @@ section h2 {
 .flower .circle,
 .flower .center-circle {
   position: absolute;
-  width: calc(var(--flower-size) / 3.5); /* Adjusted relative to flower size */
+  width: calc(var(--flower-size) / 3.5);
   height: calc(var(--flower-size) / 3.5);
-  border: calc(var(--flower-size) / 8) solid var(--color-accent); /* Adjusted border thickness */
+  border: calc(var(--flower-size) / 8) solid var(--color-accent);
   border-radius: 50%;
   background: var(--color-background);
 }
@@ -352,6 +348,13 @@ section h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+}
+
+/* Hide flower on touch devices */
+@media (pointer: coarse) {
+  .flower-container {
+    display: none;
+  }
 }
 
 /* =========================================
@@ -392,7 +395,7 @@ section h2 {
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Position above the button */
+  bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
@@ -402,7 +405,7 @@ section h2 {
 .copy-tooltip::after {
   content: "";
   position: absolute;
-  top: 100%; /* At the bottom of the tooltip */
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   border-width: 5px;
@@ -419,23 +422,6 @@ section h2 {
    Responsive Styles
 ========================================= */
 @media (max-width: 950px) {
-  header {
-    flex-direction: column;
-    justify-content: center;
-    height: auto; /* Allow height to adjust based on content */
-    padding: 10px 20px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  nav li + li {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-
   .project {
     width: 100%;
   }
@@ -443,18 +429,42 @@ section h2 {
   .description {
     max-width: 100%;
   }
+}
 
+@media (max-width: 600px) {
   h1 {
     text-align: center;
     align-self: center;
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
   }
 
   .main-content {
-    padding: 140px 20px 20px 20px; /* Increased top padding for mobile */
+    padding: 120px 20px 20px 20px;
   }
 
-  main {
-    padding-top: 0; /* Already accounted for in main-content */
+  .description {
+    font-size: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li + li {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    bottom: 10px;
+    right: 10px;
   }
 }
 
@@ -462,17 +472,13 @@ section h2 {
    Grid Overlay Animation
 ========================================= */
 
-/* =========================================
-   Vertical Grid Lines
-========================================= */
+/* Vertical Grid Lines */
 body::before {
-  /* Initial State */
   width: 100%;
-  height: 0; /* Start with height 0 */
+  height: 0;
   top: 0;
   left: 0;
 
-  /* Grid Lines Only */
   background-image: repeating-linear-gradient(
     to bottom,
     var(--grid-color),
@@ -481,29 +487,22 @@ body::before {
     transparent var(--grid-size)
   );
 
-  /* Background Settings */
   background-size: var(--grid-size) 100%;
   background-repeat: repeat;
   background-position: left top;
 
-  /* Ensure the grid lines are above the background but below the content */
   z-index: 1;
 
-  /* Animation */
   animation: drawVertical 2s forwards;
 }
 
-/* =========================================
-   Horizontal Grid Lines
-========================================= */
+/* Horizontal Grid Lines */
 body::after {
-  /* Initial State */
-  width: 0; /* Start with width 0 */
+  width: 0;
   height: 100%;
   top: 0;
   left: 0;
 
-  /* Grid Lines Only */
   background-image: repeating-linear-gradient(
     to right,
     var(--grid-color),
@@ -512,20 +511,17 @@ body::after {
     transparent var(--grid-size)
   );
 
-  /* Background Settings */
   background-size: var(--grid-size) 100%;
   background-repeat: repeat;
   background-position: left top;
 
-  /* Ensure the grid lines are above the background but below the content */
   z-index: 1;
 
-  /* Animation */
   animation: drawHorizontal 2s forwards;
-  animation-delay: 2s; /* Start after vertical lines are drawn */
+  animation-delay: 2s;
 }
 
-/* Keyframes to animate vertical lines from top to bottom */
+/* Keyframes */
 @keyframes drawVertical {
   from {
     height: 0;
@@ -535,7 +531,6 @@ body::after {
   }
 }
 
-/* Keyframes to animate horizontal lines from left to right */
 @keyframes drawHorizontal {
   from {
     width: 0;
@@ -548,7 +543,6 @@ body::after {
 /* =========================================
      Main Content Animation
 ========================================= */
-/* Keyframes for fading in the main content */
 @keyframes fadeInContent {
   to {
     opacity: 1;
@@ -556,7 +550,6 @@ body::after {
   }
 }
 
-/* Optional: Animate individual elements within main-content for a staggered effect */
 .main-content .header-element,
 .main-content h1,
 .main-content h2,
@@ -574,9 +567,9 @@ body::after {
   }
 }
 
-/* Assign animation delays to individual elements for staggered entrance */
+/* Animation Delays */
 .main-content .header-element {
-  animation-delay: 2s; /* After grid animations (2s vertical + 2s horizontal) */
+  animation-delay: 2s;
 }
 
 .main-content h1 {
