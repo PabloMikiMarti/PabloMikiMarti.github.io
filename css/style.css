@@ -68,7 +68,7 @@ body::after {
 h1,
 h2 {
   font-family: var(--font-secondary);
-  font-weight: 550;
+  font-weight: 650;
   margin: 0;
   line-height: 1;
 }
