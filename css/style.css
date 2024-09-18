@@ -9,7 +9,7 @@
 :root {
   --font-primary: "Chivo Mono", monospace;
   --font-secondary: "Urbanist", sans-serif;
-  --color-background: #e1dfdd;
+  --color-background: #efefef;
   --color-text: #141414;
   --color-accent: #9b271d;
   --color-secondary-text: #333;
@@ -17,8 +17,11 @@
   --color-footer-bg: #000;
   --color-footer-text: #fff;
   --transition-duration: 0.3s;
+
+  /* Grid Variables */
   --grid-color: rgba(169, 167, 165, 0.8);
   --grid-size: 20px;
+
   --header-height: 80px;
   --header-width: 85%;
 
@@ -56,6 +59,7 @@ body::after {
   z-index: 1;
   pointer-events: none;
   background-color: transparent;
+  opacity: 1; /* Initial opacity */
 }
 
 /* =========================================
@@ -70,7 +74,7 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(3rem, 10vw, 12rem);
+  font-size: clamp(3rem, 17vw, 12rem);
   color: #181818;
   text-align: right;
   width: 100%;
@@ -78,7 +82,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(2.5rem, 12vw, 12rem);
+  font-size: clamp(2.5rem, 19vw, 12rem);
   color: #530202;
   align-self: flex-start;
 }
@@ -254,13 +258,16 @@ main {
   filter: url(#wave);
   position: relative;
   width: 100%;
+  padding: 50px 10px; /* Added vertical and horizontal padding */
+  will-change: filter, opacity; /* For performance optimization */
+  transition: filter 0.1s linear, opacity 0.3s ease;
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 400;
-  max-width: 60%;
-  margin-top: 20px;
+  max-width: 70%;
+  margin-top: 10px;
   background-color: rgba(0, 0, 0, 0.07);
   padding: 10px;
   color: var(--color-secondary-text);
@@ -527,7 +534,7 @@ section h2 {
 
 /* =========================================
    Grid Overlay Animation
-======================================== */
+========================================= */
 
 /* Vertical Grid Lines */
 body::before {
@@ -550,7 +557,8 @@ body::before {
 
   z-index: 1;
 
-  animation: drawVertical 2s forwards;
+  /* Animations: draw then fade */
+  animation: drawVertical 2s forwards, fadeGrid 2.7s forwards 2.8s;
 }
 
 /* Horizontal Grid Lines */
@@ -574,8 +582,8 @@ body::after {
 
   z-index: 1;
 
-  animation: drawHorizontal 2s forwards;
-  animation-delay: 2s;
+  /* Animations: draw then fade */
+  animation: drawHorizontal 2s forwards 2s, fadeGrid 2.7s forwards 2.8s;
 }
 
 /* Keyframes */
@@ -597,9 +605,19 @@ body::after {
   }
 }
 
+/* Fade Grid Animation */
+@keyframes fadeGrid {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
 /* =========================================
      Main Content Animation
-======================================== */
+========================================= */
 @keyframes fadeInContent {
   to {
     opacity: 1;
