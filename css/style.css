@@ -25,7 +25,12 @@
   --header-height: 80px;
   --header-width: 85%;
 
-  --header-bg-color: rgba(255, 255, 255, 0.3);
+  --header-bg-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Increased opacity for better visibility */
   --header-blur: 2px;
   --header-border-radius: 5px;
 
@@ -33,6 +38,14 @@
   --flower-size: 20px;
   --flower-offset-x: 5px;
   --flower-offset-y: -7px;
+
+  /* Scroll-Up Animation Variables */
+  --section-transition-duration: 0.6s;
+  --section-transition-delay: 0.2s;
+
+  /* Sequential Animation Delays */
+  --title-animation-delay: 0s;
+  --content-animation-delay: 0.3s;
 }
 
 /* =========================================
@@ -167,28 +180,30 @@ header {
     display: flex;
   }
 
-  /* Hide the navigation menu by default on small screens */
+  /* Navigation Menu */
   .header-nav {
-    display: none;
+    display: block; /* Changed from 'none' to 'block' to enable opacity transition */
     position: absolute;
     top: var(--header-height);
     left: 0;
     width: 100%;
-    background-color: var(--header-bg-color);
+    background-color: rgba(255, 255, 255, 0.95); /* Increased opacity */
     backdrop-filter: blur(var(--header-blur));
     -webkit-backdrop-filter: blur(var(--header-blur));
     border-radius: 0 0 5px 5px;
     padding: 20px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: max-height var(--transition-duration) ease-in-out;
+    transition: opacity var(--transition-duration),
+      max-height var(--transition-duration) ease-in-out;
     overflow: hidden;
     max-height: 0;
+    opacity: 0;
   }
 
   /* Show navigation when active */
   .header-nav.active {
-    display: block;
     max-height: 500px; /* Arbitrary large value to allow menu to expand */
+    opacity: 1; /* Increased opacity */
   }
 
   nav ul {
@@ -201,7 +216,7 @@ header {
     margin-top: 15px;
   }
 
-  /* Optional: Animate hamburger to 'X' when active */
+  /* Animate hamburger to 'X' when active */
   .hamburger.active .hamburger-bar:nth-child(1) {
     transform: translateY(8.5px) rotate(45deg);
   }
@@ -280,10 +295,43 @@ section {
   margin: 80px 0;
   padding: 0;
   border-bottom: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--section-transition-duration) ease-out,
+    transform var(--section-transition-duration) ease-out;
+}
+
+section.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out var(--title-animation-delay),
+    transform 0.6s ease-out var(--title-animation-delay);
+}
+
+.section-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out var(--content-animation-delay),
+    transform 0.6s ease-out var(--content-animation-delay);
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 section h2 {
-  font-family: var(--font-primary);
+  font-family: var(--font-secondary);
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 40px;
@@ -417,7 +465,7 @@ section h2 {
 
 /* =========================================
    Copy Button & Tooltip
-======================================== */
+========================================= */
 .copy-button {
   background: none;
   border: none;
@@ -478,7 +526,7 @@ section h2 {
 
 /* =========================================
    Responsive Styles
-======================================== */
+========================================= */
 @media (max-width: 950px) {
   .project {
     width: 100%;
@@ -491,7 +539,8 @@ section h2 {
 
 @media (max-width: 900px) {
   .header-nav {
-    transition: max-height var(--transition-duration) ease-in-out;
+    transition: opacity var(--transition-duration) ease-in-out,
+      max-height var(--transition-duration) ease-in-out;
   }
 }
 
@@ -628,8 +677,7 @@ body::after {
 .main-content .header-element,
 .main-content h1,
 .main-content h2,
-.main-content .description,
-.main-content section {
+.main-content .description {
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 1s forwards;
@@ -659,6 +707,31 @@ body::after {
   animation-delay: 2.9s;
 }
 
-.main-content section {
-  animation-delay: 3.1s;
+/* =========================================
+   Scroll-Up Animation for Sections
+========================================= */
+/* Removed duplicate .section-hidden */
+
+.section-title {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out var(--title-animation-delay),
+    transform 0.6s ease-out var(--title-animation-delay);
+}
+
+.section-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out var(--content-animation-delay),
+    transform 0.6s ease-out var(--content-animation-delay);
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

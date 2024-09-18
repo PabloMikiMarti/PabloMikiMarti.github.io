@@ -1,6 +1,8 @@
 // Select DOM elements
 const flower = document.querySelector(".flower-container");
 const nameContainer = document.querySelector(".name-container");
+const hamburger = document.querySelector(".hamburger");
+const headerNav = document.querySelector(".header-nav");
 
 // Variables for mouse tracking
 let mouseX = 0,
@@ -118,3 +120,53 @@ const copyButton = document.querySelector(".copy-button");
 if (copyButton) {
   copyButton.addEventListener("click", copyEmail);
 }
+
+/* =========================================
+   New JavaScript for Hamburger Menu and Scroll Animations
+======================================== */
+
+// Toggle Hamburger Menu
+function toggleHamburgerMenu() {
+  const isActive = hamburger.classList.toggle("active");
+  headerNav.classList.toggle("active", isActive);
+  hamburger.setAttribute("aria-expanded", isActive);
+}
+
+// Attach click event to hamburger
+if (hamburger) {
+  hamburger.addEventListener("click", toggleHamburgerMenu);
+}
+
+// Scroll-Up Animations for Sections using Intersection Observer
+const sections = document.querySelectorAll(".section");
+
+const observerOptions = {
+  root: null, // viewport
+  rootMargin: "0px",
+  threshold: 0.1, // 10% of the section is visible
+};
+
+const sectionObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // Add 'section-visible' to the section
+      entry.target.classList.add("section-visible");
+
+      // Add 'visible' class to section-title and section-content
+      const title = entry.target.querySelector(".section-title");
+      const content = entry.target.querySelectorAll(".section-content");
+      if (title) {
+        title.classList.add("visible");
+      }
+      if (content.length > 0) {
+        content.forEach((el) => el.classList.add("visible"));
+      }
+
+      observer.unobserve(entry.target); // Stop observing once the section is visible
+    }
+  });
+}, observerOptions);
+
+sections.forEach((section) => {
+  sectionObserver.observe(section);
+});
