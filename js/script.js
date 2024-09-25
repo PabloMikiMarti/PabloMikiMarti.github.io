@@ -9,7 +9,7 @@ let mouseX = 0,
   mouseY = 0; // Cursor's actual position
 let flowerX = 0,
   flowerY = 0; // Flower's position
-const delayFactor = 0.05; // Controls how slowly the flower moves (lower = more delay)
+const delayFactor = 0.2; // Controls how slowly the flower moves (lower = more delay)
 
 // Function to get CSS variable values
 function getCSSVariable(variableName) {
@@ -149,19 +149,7 @@ const observerOptions = {
 const sectionObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // Add 'section-visible' to the section
       entry.target.classList.add("section-visible");
-
-      // Add 'visible' class to section-title and section-content
-      const title = entry.target.querySelector(".section-title");
-      const content = entry.target.querySelectorAll(".section-content");
-      if (title) {
-        title.classList.add("visible");
-      }
-      if (content.length > 0) {
-        content.forEach((el) => el.classList.add("visible"));
-      }
-
       observer.unobserve(entry.target); // Stop observing once the section is visible
     }
   });
@@ -169,4 +157,39 @@ const sectionObserver = new IntersectionObserver((entries, observer) => {
 
 sections.forEach((section) => {
   sectionObserver.observe(section);
+});
+
+/* =========================================
+   Lazy Loading for Images
+======================================== */
+// Select all images with the 'lazy' class
+const lazyImages = document.querySelectorAll("img.lazy");
+
+// Function to load images
+const loadImage = (image) => {
+  image.src = image.dataset.src;
+  image.classList.remove("lazy");
+  image.classList.add("loaded");
+};
+
+// Options for the observer
+const imgObserverOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.1,
+};
+
+// Create an Intersection Observer for images
+const imgObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      loadImage(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, imgObserverOptions);
+
+// Observe each lazy image
+lazyImages.forEach((img) => {
+  imgObserver.observe(img);
 });

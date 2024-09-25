@@ -1,30 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- =========================================
+         Meta Tags
+    ========================================= -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pablo-Miki Martí Castellote</title>
+    <title>
+      Pablo-Miki Martí Castellote | Biomedical Engineer & Researcher
+    </title>
+    <meta
+      name="description"
+      content="Pablo-Miki Martí Castellote is a biomedical engineer and postdoctoral researcher at Harvard Medical School, specializing in machine learning applications in healthcare."
+    />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="Pablo-Miki Martí Castellote | Biomedical Engineer & Researcher"
+    />
+    <meta
+      property="og:description"
+      content="Explore the research and projects of Pablo-Miki Martí Castellote, a biomedical engineer focusing on machine learning in healthcare."
+    />
+    <meta property="og:image" content="images/og-image.png" />
+    <meta property="og:url" content="https://www.yourwebsite.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Pablo-Miki Martí Castellote | Biomedical Engineer & Researcher"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover the work of Pablo-Miki Martí Castellote, a biomedical engineer dedicated to advancing machine learning in the healthcare sector."
+    />
+    <meta name="twitter:image" content="images/twitter-image.png" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Pablo-Miki Martí Castellote",
+        "jobTitle": "Postdoctoral Researcher",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Harvard Medical School"
+        },
+        "url": "https://www.yourwebsite.com",
+        "sameAs": [
+          "https://www.linkedin.com/in/pablo-miki-martí-castellote-b68484162",
+          "https://x.com/PabloMikiMarti",
+          "https://github.com/PabloMikiMarti"
+        ],
+        "email": "mailto:pmarticastellote@gmail.com",
+        "image": "images/profile-photo.jpg",
+        "description": "Biomedical engineer specializing in machine learning applications in healthcare and clinical trial optimization."
+      }
+    </script>
+
+    <!-- =========================================
+         Favicon
+    ========================================= -->
+    <link rel="icon" href="images/panot.png" type="image/png" sizes="32x32" />
+    <!-- Additional Favicon Sizes -->
+    <link
+      rel="icon"
+      href="images/panot-16x16.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      href="images/panot-48x48.png"
+      type="image/png"
+      sizes="48x48"
+    />
+    <link rel="icon" href="images/panot.ico" type="image/x-icon" />
+
+    <!-- =========================================
+         Stylesheet
+    ========================================= -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="images/panot.png" type="image/png" sizes="32x32" />
-    <!-- Optional: Additional Favicon Sizes for Better Compatibility -->
-    <!--
-    <link rel="icon" href="images/panot-16x16.png" type="image/png" sizes="16x16" />
-    <link rel="icon" href="images/panot-32x32.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="images/panot-48x48.png" type="image/png" sizes="48x48" />
-    -->
+    <!-- =========================================
+         SEO and Accessibility Enhancements
+    ========================================= -->
+    <!-- Ensuring all images have descriptive alt attributes -->
+    <!-- ARIA Attributes are added directly within HTML elements below -->
 
-    <!-- Optional: Using ICO Format for Wider Browser Support -->
-    <!--
-    <link rel="icon" href="images/panot.ico" type="image/x-icon" />
-    -->
+    <!-- =========================================
+         Additional Meta Tags (Optional)
+    ========================================= -->
+    <!-- Add any additional meta tags here -->
   </head>
   <body>
     <!-- Fixed Header -->
     <header>
       <div class="header-left">
-        <div class="header-item header-element">2024:v1</div>
+        <div class="header-item header-element">2024:v0.1</div>
         <div class="header-item header-element">Based in Boston, MA</div>
       </div>
 
@@ -50,8 +127,8 @@
       </nav>
     </header>
 
-    <!-- Flower Animation -->
-    <div class="flower-container">
+    <!-- Flower Animation (Decorative, marked as hidden for accessibility) -->
+    <div class="flower-container" aria-hidden="true">
       <div class="flower">
         <div class="circle"></div>
         <div class="circle"></div>
@@ -76,151 +153,148 @@
       </main>
 
       <!-- Sections -->
-      <section id="about" class="section">
+      <section id="about" class="section section-hidden">
         <div class="section-number">// 01</div>
-        <h2 class="section-title">About</h2>
-        <div class="section-content">
-          <p>
-            I am currently a Postdoctoral Researcher at Brigham and Women's
-            Hospital and Harvard Medical School, with an affiliation to the
-            Broad Institute of MIT and Harvard. My research focuses on the
-            intersection of machine learning and healthcare, specifically in
-            improving clinical trial efficiency and providing decision support
-            tools for cardiologists.
-          </p>
-          <p>
-            I completed my PhD at Universitat Pompeu Fabra in Barcelona, where I
-            developed novel machine learning methodologies for managing
-            heterogeneous clinical data. My work has been supported by the
-            Fundacio Privada Daniel Bravo Andreu, and I have collaborated with
-            leading experts in cardiology and machine learning.
-          </p>
-          <p>
-            Passionate about data-driven personalized medicine, I aim to
-            contribute to advancements in cardiac care through innovative
-            research and interdisciplinary collaboration.
-          </p>
-          <p>
-            My other interests span creative coding and GenAI, music production,
-            and philosophy of science and ontology (<a
-              href="https://en.wikipedia.org/wiki/Wilfrid_Sellars"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Sellars</a
-            >
-            and
-            <a
-              href="https://en.wikipedia.org/wiki/Gustavo_Bueno#Philosophical_materialism"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Bueno</a
-            >).
-          </p>
-        </div>
+        <h2>About</h2>
+        <p>
+          I am currently a Postdoctoral Researcher at Brigham and Women's
+          Hospital and Harvard Medical School, with an affiliation to the Broad
+          Institute of MIT and Harvard. My research focuses on the intersection
+          of machine learning and healthcare, specifically in improving clinical
+          trial efficiency and providing decision support tools for
+          cardiologists.
+        </p>
+        <p>
+          I completed my PhD at Universitat Pompeu Fabra in Barcelona, where I
+          developed novel machine learning methodologies for managing
+          heterogeneous clinical data. My work has been supported by the
+          Fundacio Privada Daniel Bravo Andreu, and I have collaborated with
+          leading experts in cardiology and machine learning.
+        </p>
+        <p>
+          Passionate about data-driven personalized medicine, I aim to
+          contribute to advancements in cardiac care through innovative research
+          and interdisciplinary collaboration.
+        </p>
+        <p>
+          My other interests span creative coding and GenAI, music production,
+          and philosophy of science and ontology (<a
+            href="https://en.wikipedia.org/wiki/Wilfrid_Sellars"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Sellars</a
+          >
+          and
+          <a
+            href="https://en.wikipedia.org/wiki/Gustavo_Bueno#Philosophical_materialism"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Bueno</a
+          >).
+        </p>
       </section>
 
-      <section id="work" class="section">
+      <section id="work" class="section section-hidden">
         <div class="section-number">// 02</div>
-        <h2 class="section-title">Research Projects</h2>
-        <div class="section-content">
-          <div class="project-container">
-            <div class="project">
-              <h3 class="project-title">
-                Machine Learning for Clinical Trials
-              </h3>
-              <div class="project-meta">[Ongoing Project]</div>
-              <p class="project-description">
-                Leveraging machine learning techniques to optimize clinical
-                trial designs, improve efficiency, and extract meaningful
-                insights from large-scale clinical data.
-              </p>
-              <ul class="project-links">
-                <li><a href="#project-link">Project Details</a></li>
-                <li><a href="#publication-link">Publications</a></li>
-              </ul>
-            </div>
-            <div class="project">
-              <h3 class="project-title">Echocardiography Data Analysis</h3>
-              <div class="project-meta">[Collaborative Project]</div>
-              <p class="project-description">
-                Developing advanced machine learning models to analyze
-                echocardiography data, aiming to enhance diagnostic decision
-                support for cardiologists.
-              </p>
-              <ul class="project-links">
-                <li><a href="#project-link">Project Details</a></li>
-                <li><a href="#publication-link">Publications</a></li>
-              </ul>
-            </div>
+        <h2>Research Projects</h2>
+        <div class="project-container">
+          <div class="project">
+            <h3 class="project-title">Machine Learning for Clinical Trials</h3>
+            <div class="project-meta">[Ongoing Project]</div>
+            <p class="project-description">
+              Leveraging machine learning techniques to optimize clinical trial
+              designs, improve efficiency, and extract meaningful insights from
+              large-scale clinical data.
+            </p>
+            <ul class="project-links">
+              <li><a href="#project-link">Project Details</a></li>
+              <li><a href="#publication-link">Publications</a></li>
+            </ul>
+          </div>
+          <div class="project">
+            <h3 class="project-title">Echocardiography Data Analysis</h3>
+            <div class="project-meta">[Collaborative Project]</div>
+            <p class="project-description">
+              Developing advanced machine learning models to analyze
+              echocardiography data, aiming to enhance diagnostic decision
+              support for cardiologists.
+            </p>
+            <ul class="project-links">
+              <li><a href="#project-link">Project Details</a></li>
+              <li><a href="#publication-link">Publications</a></li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section id="blog" class="section">
+      <section id="blog" class="section section-hidden">
         <div class="section-number">// 03</div>
-        <h2 class="section-title">Blog</h2>
-        <div class="section-content">
-          <p>
-            Welcome to my blog! Here, I share insights and updates on my
-            research, developments in machine learning for healthcare, and
-            reflections on the latest trends in data science and medical
-            technology.
-          </p>
-          <!-- You can add blog posts here -->
-        </div>
+        <h2>Blog</h2>
+        <p>
+          Welcome to my blog! Here, I share insights and updates on my research,
+          developments in machine learning for healthcare, and reflections on
+          the latest trends in data science and medical technology.
+        </p>
+        <!-- You can add blog posts here -->
       </section>
 
-      <section id="social-media" class="section">
+      <section id="social-media" class="section section-hidden">
         <div class="section-number">// 04</div>
-        <h2 class="section-title">Contact</h2>
-        <div class="section-content">
-          <p>
-            Feel free to reach out via email or connect with me on professional
-            platforms:
-          </p>
-          <ul>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/pablo-miki-martí-castellote-b68484162"
-                target="_blank"
-                rel="noopener noreferrer"
-                >LinkedIn</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://x.com/PabloMikiMarti"
-                target="_blank"
-                rel="noopener noreferrer"
-                >X (Twitter)</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://github.com/PabloMikiMarti"
-                target="_blank"
-                rel="noopener noreferrer"
-                >GitHub</a
-              >
-            </li>
-          </ul>
-          <p>
-            Email:
-            <a href="mailto:pmarticastellote@gmail.com" id="email-link"
-              >pmarticastellote@gmail.com</a
+        <h2>Contact</h2>
+        <p>
+          Feel free to reach out via email or connect with me on professional
+          platforms:
+        </p>
+        <ul>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/pablo-miki-martí-castellote-b68484162"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn</a
             >
-            <button class="copy-button" aria-label="Copy Email">
-              <!-- Inline SVG for Copy Icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"
-                />
-              </svg>
-              <!-- Tooltip -->
-              <span class="copy-tooltip" id="copy-tooltip">Copied!</span>
-            </button>
-          </p>
-        </div>
+          </li>
+          <li>
+            <a
+              href="https://x.com/PabloMikiMarti"
+              target="_blank"
+              rel="noopener noreferrer"
+              >X (Twitter)</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/PabloMikiMarti"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+        <p>
+          Email:
+          <a href="mailto:pmarticastellote@gmail.com" id="email-link"
+            >pmarticastellote@gmail.com</a
+          >
+          <button
+            class="copy-button"
+            onclick="copyEmail()"
+            aria-label="Copy Email"
+          >
+            <!-- Inline SVG for Copy Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"
+              />
+            </svg>
+            <!-- Tooltip -->
+            <span class="copy-tooltip" id="copy-tooltip">Copied!</span>
+          </button>
+        </p>
       </section>
     </div>
 
@@ -252,6 +326,6 @@
     </svg>
 
     <!-- Link to external JavaScript file -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
   </body>
 </html>
